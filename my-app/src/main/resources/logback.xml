@@ -1,0 +1,15 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="io.reactivestax" level="DEBUG" />
+    <logger name="org.springframework.jdbc.core.JdbcTemplate" level="DEBUG" />
+    <logger name="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" level="DEBUG" />
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
