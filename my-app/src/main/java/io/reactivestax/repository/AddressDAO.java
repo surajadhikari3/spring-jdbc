@@ -19,13 +19,13 @@ import java.util.Map;
 public class AddressDAO {
 
     private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    AddressDAO(JdbcTemplate jdbcTemplate){
+    AddressDAO(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    @Autowired
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public int createAddress(Address address){
         String sql = "INSERT INTO addresses (street, city, state, zipcode) VALUES (?, ?, ?, ?)";
@@ -42,8 +42,6 @@ public class AddressDAO {
         Map<String, Object> keyMap = keyHolder.getKeyList().get(0); // Get the first key in the list
         int generatedId = (Integer) keyMap.get("id"); // Extract th
 
-//        int generatedId = keyHolder.getKey().intValue();
-//        int generatedId = keyHolder.getKey().intValue();
         log.info("Generated Address ID: {}", generatedId);
         return generatedId;
     }
@@ -88,7 +86,6 @@ public class AddressDAO {
         int generatedId = keyHolder.getKey().intValue();
         log.debug("Generated Address ID: {}", generatedId);
         return generatedId;
-
     }
 
     public Address getAddressWithNamedTemplate(int id) {
