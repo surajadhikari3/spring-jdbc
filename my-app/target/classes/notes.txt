@@ -1,0 +1,3 @@
+Join-points
+Point-cuts
+advice (5 types of advise are there)
